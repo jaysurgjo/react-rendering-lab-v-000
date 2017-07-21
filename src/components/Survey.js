@@ -5,7 +5,7 @@ function random(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-class Survey extends React.Component {
+export default class Survey extends React.Component {
 
   constructor(props) {
     super(props);
@@ -13,17 +13,23 @@ class Survey extends React.Component {
     this.state = {
       rating: 0
     };
+
+    this.increaseRating = this.increaseRating.bind(this);
+    this.maintainRating = this.maintainRating.bind(this);
+    this.decreaseRating = this.decreaseRating.bind(this);
   }
 
-  increaseRating = () => {
+  increaseRating() {
     this.setState({ rating: this.state.rating + 1 });
   }
 
-  decreaseRating = () => {
+  decreaseRating() {
     this.setState({ rating: this.state.rating - 1 });
   }
 
-  maintainRating = () => this.forceUpdate();
+  maintainRating() {
+    this.forceUpdate();
+  }
 
   render() {
     return (
@@ -36,5 +42,3 @@ class Survey extends React.Component {
     )
   }
 }
-
-export default Survey;
